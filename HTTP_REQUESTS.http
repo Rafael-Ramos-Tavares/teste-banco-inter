@@ -1,0 +1,155 @@
+@baseUrl = http://localhost:8080/api
+
+### 1. Criar uma nova tarefa
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Implementar API REST",
+  "description": "Desenvolver endpoints para CRUD de tarefas com validação",
+  "status": "PENDING"
+}
+
+### 2. Criar tarefa com status Em Andamento
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Documentar código",
+  "description": "Adicionar comentários e documentação ao projeto",
+  "status": "IN_PROGRESS"
+}
+
+### 3. Criar tarefa sem descrição
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Testes unitários",
+  "status": "PENDING"
+}
+
+### 4. Criar tarefa concluída
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Deploy em produção",
+  "description": "Configurar e fazer deploy da aplicação em um servidor",
+  "status": "COMPLETED"
+}
+
+### 5. Listar todas as tarefas (primeira página)
+GET {{baseUrl}}/tasks
+Content-Type: application/json
+
+### 6. Listar tarefas com paginação customizada
+GET {{baseUrl}}/tasks?page=0&size=5&sort=createdAt,desc
+
+### 7. Obter tarefa por ID (substitua {id} pelo ID da tarefa)
+GET {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+### 8. Listar tarefas com status PENDING
+GET {{baseUrl}}/tasks/status/PENDING
+Content-Type: application/json
+
+### 9. Listar tarefas com status IN_PROGRESS
+GET {{baseUrl}}/tasks/status/IN_PROGRESS
+Content-Type: application/json
+
+### 10. Listar tarefas com status COMPLETED
+GET {{baseUrl}}/tasks/status/COMPLETED
+Content-Type: application/json
+
+### 11. Listar tarefas PENDING com paginação
+GET {{baseUrl}}/tasks/status/PENDING/paginated?page=0&size=10
+Content-Type: application/json
+
+### 12. Buscar tarefas por título
+GET {{baseUrl}}/tasks/search?title=API
+Content-Type: application/json
+
+### 13. Buscar tarefas por título (busca case-insensitive)
+GET {{baseUrl}}/tasks/search?title=documentar
+Content-Type: application/json
+
+### 14. Atualizar título de uma tarefa
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Implementar API REST com autenticação"
+}
+
+### 15. Atualizar status de uma tarefa
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+  "status": "IN_PROGRESS"
+}
+
+### 16. Atualizar descrição de uma tarefa
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+  "description": "Desenvolver endpoints para CRUD com validação e segurança"
+}
+
+### 17. Atualizar múltiplos campos
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Implementar API REST com JWT",
+  "description": "Adicionar autenticação JWT à API",
+  "status": "IN_PROGRESS"
+}
+
+### 18. Marcar tarefa como concluída
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+  "status": "COMPLETED"
+}
+
+### 19. Deletar uma tarefa
+DELETE {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+### 20. Deletar tarefa inexistente (deve retornar 404)
+DELETE {{baseUrl}}/tasks/999
+Content-Type: application/json
+
+### Teste de Validação - Título vazio (deve retornar 400)
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "Teste",
+  "status": "PENDING"
+}
+
+### Teste de Validação - Título muito curto (deve retornar 400)
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "ab",
+  "description": "Teste",
+  "status": "PENDING"
+}
+
+### Teste de Validação - Descrição muito longa (deve retornar 400)
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Tarefa de teste",
+  "description": "{{longDescription}}",
+  "status": "PENDING"
+}

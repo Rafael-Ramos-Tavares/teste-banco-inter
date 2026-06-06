@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: todo-list-api
+  
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=todo_db;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: YourPassword@123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        format_sql: true
+    show-sql: false
+  
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.todolist: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
