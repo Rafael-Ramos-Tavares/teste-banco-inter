@@ -595,4 +595,4 @@ Este projeto está licenciado sob Apache License 2.0.
 **Desenvolvido com ❤️ usando Java e Spring Boot**
 
 Versão: 1.0.0  
-Data: Janeiro 2024
+Data: Junho 2026
